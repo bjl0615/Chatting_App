@@ -1,4 +1,4 @@
-package com.example.chatting_app
+package com.example.chatting_app.userList
 
 
 data class UserItem(

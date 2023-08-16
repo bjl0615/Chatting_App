@@ -1,9 +1,10 @@
-package com.example.chatting_app
+package com.example.chatting_app.userList
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.chatting_app.R
 import com.example.chatting_app.databinding.FragmentUserlistBinding
 
 class UserFragment : Fragment(R.layout.fragment_userlist) {
@@ -19,5 +20,13 @@ class UserFragment : Fragment(R.layout.fragment_userlist) {
             layoutManager = LinearLayoutManager(context)
             adapter = userListAdapter
         }
+
+        userListAdapter.submitList(
+            mutableListOf<UserItem?>().apply {
+                add(UserItem("11" , "22" , "33"))
+            }
+        )
     }
+
+
 }

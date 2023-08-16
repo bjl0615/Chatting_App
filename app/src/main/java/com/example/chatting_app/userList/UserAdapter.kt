@@ -1,14 +1,13 @@
-package com.example.chatting_app
+package com.example.chatting_app.userList
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.chatting_app.databinding.ItemUserBinding
 
-class UserAdapter : ListAdapter<UserItem , UserAdapter.ViewHolder>(differ) {
+class UserAdapter : ListAdapter<UserItem, UserAdapter.ViewHolder>(differ) {
 
     inner class ViewHolder(private val binding : ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item : UserItem) {
