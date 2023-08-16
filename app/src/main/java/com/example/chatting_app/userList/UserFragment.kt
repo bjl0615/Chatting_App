@@ -44,9 +44,7 @@ class UserFragment : Fragment(R.layout.fragment_userlist) {
                         if(user.userId != currentUserId) {
                             userItemList.add(user)
                         }
-
                     }
-
                     userListAdapter.submitList(userItemList)
                 }
 
