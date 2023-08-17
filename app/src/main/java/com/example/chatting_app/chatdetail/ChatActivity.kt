@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chatting_app.Key
-import com.example.chatting_app.Key.Companion.FCM_SERVER_KEY
 import com.example.chatting_app.R
 import com.example.chatting_app.databinding.ActivityChatdetailBinding
 import com.example.chatting_app.userList.UserItem
@@ -125,7 +124,7 @@ class ChatActivity : AppCompatActivity() {
                 root.toString().toRequestBody("application/json; charset=utf-8".toMediaType())
             val request =
                 Request.Builder().post(requestBody).url("https://fcm.googleapis.com/fcm/send")
-                    .header("Authorization", "key=$FCM_SERVER_KEY").build()
+                    .header("Authorization", "key=${getString(R.string.fcm_server_key)}").build()
             client.newCall(request).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     e.stackTraceToString()
