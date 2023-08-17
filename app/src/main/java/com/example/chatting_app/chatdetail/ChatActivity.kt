@@ -27,7 +27,6 @@ class ChatActivity : AppCompatActivity() {
     private var otherUserId: String = ""
     private var myUserId: String = ""
     private var myUserName: String = ""
-    private var isInit = false
 
     private val chatItemList = mutableListOf<ChatItem>()
 
