@@ -7,21 +7,28 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chatting_app.databinding.ItemChatroomBinding
 
-class ChatListAdapter : ListAdapter<ChatRoomItem, ChatListAdapter.ViewHolder>(differ) {
+class ChatListAdapter(private val onClick: (ChatRoomItem) -> Unit) :
+    ListAdapter<ChatRoomItem, ChatListAdapter.ViewHolder>(differ) {
 
-    inner class ViewHolder(private val binding : ItemChatroomBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item : ChatRoomItem) {
+    inner class ViewHolder(private val binding: ItemChatroomBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: ChatRoomItem) {
             binding.nicknameTextView.text = item.otherUserName
             binding.lastMessageTextView.text = item.lastMessage
+
+            binding.root.setOnClickListener {
+                onClick(item)
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(ItemChatroomBinding.inflate(
-            LayoutInflater.from(parent.context),
+        return ViewHolder(
+            ItemChatroomBinding.inflate(
+                LayoutInflater.from(parent.context),
                 parent,
                 false
-                )
+            )
         )
     }
 
@@ -30,7 +37,7 @@ class ChatListAdapter : ListAdapter<ChatRoomItem, ChatListAdapter.ViewHolder>(di
     }
 
     companion object {
-        val differ = object :  DiffUtil.ItemCallback<ChatRoomItem>() {
+        val differ = object : DiffUtil.ItemCallback<ChatRoomItem>() {
             override fun areItemsTheSame(oldItem: ChatRoomItem, newItem: ChatRoomItem): Boolean {
                 return oldItem.chatRoomId == newItem.chatRoomId
             }

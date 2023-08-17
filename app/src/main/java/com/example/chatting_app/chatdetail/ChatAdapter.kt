@@ -12,17 +12,19 @@ import com.example.chatting_app.userList.UserItem
 
 class ChatAdapter : ListAdapter<ChatItem, ChatAdapter.ViewHolder>(differ) {
 
-    var otherUserItem : UserItem? = null
+    var otherUserItem: UserItem? = null
 
-    inner class ViewHolder(private val binding : ItemChatBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item : ChatItem) {
-            if(item.userId == otherUserItem?.userId) {
-                binding.messageTextView.isVisible = true
+    inner class ViewHolder(private val binding: ItemChatBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: ChatItem) {
+            if (item.userId == otherUserItem?.userId) {
+                binding.usernameTextView.isVisible = true
                 binding.usernameTextView.text = otherUserItem?.username
                 binding.messageTextView.text = item.message
                 binding.messageTextView.gravity = Gravity.START
-            }else {
-                binding.messageTextView.isVisible = false
+            } else {
+                binding.usernameTextView.isVisible = false
                 binding.messageTextView.text = item.message
                 binding.messageTextView.gravity = Gravity.END
             }
@@ -31,11 +33,12 @@ class ChatAdapter : ListAdapter<ChatItem, ChatAdapter.ViewHolder>(differ) {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(ItemChatBinding.inflate(
-            LayoutInflater.from(parent.context),
+        return ViewHolder(
+            ItemChatBinding.inflate(
+                LayoutInflater.from(parent.context),
                 parent,
                 false
-                )
+            )
         )
     }
 
@@ -43,8 +46,9 @@ class ChatAdapter : ListAdapter<ChatItem, ChatAdapter.ViewHolder>(differ) {
         holder.bind(currentList[position])
     }
 
+
     companion object {
-        val differ = object :  DiffUtil.ItemCallback<ChatItem>() {
+        val differ = object : DiffUtil.ItemCallback<ChatItem>() {
             override fun areItemsTheSame(oldItem: ChatItem, newItem: ChatItem): Boolean {
                 return oldItem.chatId == newItem.chatId
             }
@@ -55,6 +59,4 @@ class ChatAdapter : ListAdapter<ChatItem, ChatAdapter.ViewHolder>(differ) {
 
         }
     }
-
-
 }
